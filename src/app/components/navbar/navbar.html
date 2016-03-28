@@ -1,21 +1,40 @@
-<nav class="navbar navbar-static-top navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-        <span class="glyphicon glyphicon-home"></span> Gulp Angular
-      </a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-      <ul class="nav navbar-nav">
-        <li class="active"><a ng-href="#">Home</a></li>
-        <li><a ng-href="#">About</a></li>
-        <li><a ng-href="#">Contact</a></li>
-      </ul>
-
-      <ul class="nav navbar-nav navbar-right acme-navbar-text">
-        <li>Application was created {{ vm.relativeDate }}.</li>
-      </ul>
-    </div>
-  </div>
+<meta charset="utf-8" >
+<nav id="js-aside" class="mala-aside">
+    <ul class="mala-subnavi-list">
+        <li class="mala-subnavi-item">
+            <div class="mala-subnavi-lead mala-clearfix report"> <i class="fa fa-exchange fa-fw"></i> 数据报告
+                <span class="mala-arrow mala-arrow-down mala-fr"></span>
+            </div>
+            <ul class="mala-thirdnavi-list" style="margin-left: 20px;">
+                <li class="mala-subnavi-item">
+                    <a class="mala-subnavi-link select active total_report" href="/crm/site/index?reportId=1" reportId="1"> <i class="fa fa-exchange fa-fw"></i>  数据概览</a>
+                </li>
+                <li class="mala-thirdnavi-item">
+                    <div class="mala-subnavi-lead mala-clearfix product_report"> <i class="fa fa-exchange fa-fw"></i> 产品线数据
+                        <span class="mala-arrow mala-arrow-down mala-fr"></span>
+                    </div>
+                    <ul class="mala-thirdnavi-list">
+                    	<li ng-repeat="business in businesses" class="mala-thirdnavi-item">
+                    		<a class="mala-thirdnavi-link" href="/crm/site/index?reportId={{business.reportId}}" reportId="{{business.reportId}}">{{business.name}}</a>
+                    	</li>
+                    </ul>
+                </li>
+                <li class="mala-subnavi-item">
+                    <a class="mala-subnavi-link select " href="/crm/site/index?reportId=0"  reportId="0"> <i class="fa fa-taxi fa-fw"></i>自定义报表</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <ul class="mala-subnavi-list">
+        <li class="mala-subnavi-item">
+            <div class="mala-subnavi-lead mala-clearfix" id="trackdiv"> <i class="fa fa-exchange fa-fw"></i> 问题追踪
+                <span class="mala-arrow mala-arrow-down mala-fr"></span>
+            </div>
+            <ul class="mala-thirdnavi-list" style="margin-left: 20px;">
+                <li class="mala-subnavi-item">
+                    <a class="mala-subnavi-link" href="/crm/assign/index" id="tracklist"> <i class="fa fa-exchange fa-fw"></i>问题列表</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </nav>

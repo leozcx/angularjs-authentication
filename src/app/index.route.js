@@ -12,6 +12,11 @@
         controller: 'MainController',
         controllerAs: 'main'
       })
+      .when('/data', {
+    	  templateUrl: 'app/data-overview/overview.html',
+    	  controller: 'DataOverviewController',
+    	  controllerAs: 'dataOverview'
+      })
       .otherwise({
         redirectTo: '/'
       });

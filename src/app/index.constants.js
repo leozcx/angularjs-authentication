@@ -4,7 +4,8 @@
 
   angular
     .module('auth')
-    .constant('malarkey', malarkey)
+    .constant('GET_LIST_URL', 'api/getList.json')//'/crm/sheet/getlist'
+    .constant('METHOD', 'get')
     .constant('moment', moment);
 
 })();

@@ -1,32 +1,68 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('auth')
-    .directive('acmeNavbar', acmeNavbar);
+	angular.module('auth').directive('acmeNavbar', acmeNavbar);
 
-  /** @ngInject */
-  function acmeNavbar() {
-    var directive = {
-      restrict: 'E',
-      templateUrl: 'app/components/navbar/navbar.html',
-      scope: {
-          creationDate: '='
-      },
-      controller: NavbarController,
-      controllerAs: 'vm',
-      bindToController: true
-    };
+	/** @ngInject */
+	function acmeNavbar() {
+		var directive = {
+			restrict : 'E',
+			templateUrl : 'app/components/navbar/navbar.html',
+			scope : {
+				creationDate : '='
+			},
+			controller : NavbarController,
+			controllerAs : 'vm',
+			bindToController : true
+		};
 
-    return directive;
+		return directive;
 
-    /** @ngInject */
-    function NavbarController(moment) {
-      var vm = this;
+		/** @ngInject */
+		function NavbarController() {
+			var vm = this;
 
-      // "vm.creation" is avaible by directive option "bindToController: true"
-      vm.relativeDate = moment(vm.creationDate).fromNow();
-    }
-  }
+			vm.businesses = [ {
+				'reportId' : '2',
+				'name' : "taxi"
+			}, {
+				'reportId' : '3',
+				'name' : "zhuan che"
+			} ];
+		}
+	}
+
+	var $ = angular.element;
+	(function() {
+		$('#js-header').on('mouseenter', '.js-header-dropmenu', function() {
+			$(this).find('.js-header-list').slideDown('fast');
+		}).on('mouseleave', '.js-header-dropmenu', function() {
+			$(this).find('.js-header-list').slideUp('fast');
+		})
+	})();
+
+	// 左侧梳妆菜单展开收起效果
+	(function() {
+		$(document)
+				.on(
+						'click',
+						'#js-aside .mala-subnavi-lead',
+						function() {
+							console.log('clicked')
+							var target = $(this), arrow = target
+									.find('.mala-arrow'), is_up = arrow
+									.hasClass('mala-arrow-up'), list = target
+									.siblings('.mala-thirdnavi-list');
+							if (is_up) {
+								arrow.removeClass('mala-arrow-up').addClass(
+										'mala-arrow-down');
+								list.slideUp();
+							} else {
+								arrow.removeClass('mala-arrow-down').addClass(
+										'mala-arrow-up');
+								list.slideDown();
+							}
+						});
+	})();
 
 })();

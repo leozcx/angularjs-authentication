@@ -8,7 +8,6 @@
   /** @ngInject */
   function MainController($timeout, webDevTec, toastr, Authentication) {
     var vm = this;
-console.log(Authentication.getUser())
     vm.awesomeThings = [];
     vm.classAnimation = '';
     vm.creationDate = 1459086560002;
