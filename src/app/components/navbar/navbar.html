@@ -7,15 +7,15 @@
             </div>
             <ul class="mala-thirdnavi-list" style="margin-left: 20px;">
                 <li class="mala-subnavi-item">
-                    <a class="mala-subnavi-link select active total_report" href="/crm/site/index?reportId=1" reportId="1"> <i class="fa fa-exchange fa-fw"></i>  数据概览</a>
+                    <a class="mala-subnavi-link select active total_report" href="/#/data?reportId={{vm.overview.reportId}}" ng-click="vm.showReport(vm.overview)"> <i class="fa fa-exchange fa-fw"></i>{{vm.overview.name}}</a>
                 </li>
                 <li class="mala-thirdnavi-item">
                     <div class="mala-subnavi-lead mala-clearfix product_report"> <i class="fa fa-exchange fa-fw"></i> 产品线数据
                         <span class="mala-arrow mala-arrow-down mala-fr"></span>
                     </div>
                     <ul class="mala-thirdnavi-list">
-                    	<li ng-repeat="business in businesses" class="mala-thirdnavi-item">
-                    		<a class="mala-thirdnavi-link" href="/crm/site/index?reportId={{business.reportId}}" reportId="{{business.reportId}}">{{business.name}}</a>
+                    	<li ng-repeat="business in vm.businesses" class="mala-thirdnavi-item">
+                    		<a class="mala-thirdnavi-link" href="/#/data?reportId={{business.reportId}}" ng-click="vm.showReport(business)">{{business.name}}</a>
                     	</li>
                     </ul>
                 </li>

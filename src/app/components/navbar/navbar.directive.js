@@ -8,9 +8,6 @@
 		var directive = {
 			restrict : 'E',
 			templateUrl : 'app/components/navbar/navbar.html',
-			scope : {
-				creationDate : '='
-			},
 			controller : NavbarController,
 			controllerAs : 'vm',
 			bindToController : true
@@ -21,14 +18,20 @@
 		/** @ngInject */
 		function NavbarController() {
 			var vm = this;
+			
+			vm.overview = {'reportId': '1', 'name': "数据概览"};
 
 			vm.businesses = [ {
 				'reportId' : '2',
-				'name' : "taxi"
+				'name' : "出租车"
 			}, {
 				'reportId' : '3',
-				'name' : "zhuan che"
+				'name' : "快车"
 			} ];
+			
+			vm.showReport = function(business) {
+				console.log(business)
+			}
 		}
 	}
 

@@ -1,6 +1,628 @@
-<div class="container">
+<section  class="mala-content" id="content" style="margin-top: 20px;">
 
-  data
+	<div class="container sortable" style="width: 100%;padding-left: 0px;padding-right: 0px;">
+
+		<div class="row" style="background-color: white;height: 60px;border: 1px solid #e7e9ed;margin-bottom: 0px;margin-left: 5px; margin-right: 5px;">
+			<div class="col-xs-9" >
+				<ul id="tab" class="nav nav-tabs nav-tabs-new">
+				</ul>
+			</div>
+			<div  class="col-xs-3" style="margin-top: 15px;">
+				<span id="sheetedit"  style="display: none;float: right;">
+				<i class="glyphicon glyphicon-plus" data-toggle="modal"
+				   data-target="#addSheet" title="添加报表">&nbsp;|&nbsp;</i>
+				<i class="glyphicon glyphicon-cog" title="修改报表">&nbsp;|&nbsp;</i>
+				<i class="glyphicon glyphicon-ok" title="保存修改">&nbsp;|&nbsp;</i>
+				</span>
+			</div>
+		</div>
+		<div class="tab-content">
+			<div class="tab-pane active">
+				<div class="row" id="diagrameditrow" style="border: 1px solid #e7e9ed;background-color: white;display: none;margin-bottom: 0px;margin-left: 5px; margin-right: 5px;">
+					<div class="col-xs-9"></div>
+					<div class="col-xs-3" style="margin-top: 7px;">
+						<span id="diaedit"  style="margin-top: 7px;float: right;">
+							<i class="glyphicon glyphicon-plus-sign plus-diagram" data-toggle="modal" id="addcharticon" data-target="#addDiagram" style="display: none" title="添加图表">&nbsp;|&nbsp;</i>
+							<i class="glyphicon glyphicon-edit plus-diagram edit-diagram" id="editcharticon" onclick="editDigram(this)" title="图表修改模式">&nbsp;|&nbsp;</i>
+							<i class="glyphicon glyphicon-ok plus-diagram"  id="savecharticon" style="display: none" onclick=saveEditDia() title="保存修改">&nbsp;|&nbsp;</i>
+						</span>
+					</div>
+
+				</div>
+				<div class="row big">
+				</div>
+			</div>
+	</div>
+
+	<div class="wrp-exp-share" style="position: fixed; bottom: 44px; right: 25.5px; display: block;">
+		<span>
+			<a href="javascript:void(0)">
+			<i class="glyphicon glyphicon-edit" data-toggle="modal" id="addcharticon" data-target="#addFeedBack"  style="color: white;font-size: 24px;margin-top: 3px;" title="意见与反馈"></i>
+		    </a>
+		</span>
+	</div>
 
 
+	<div class="modal fade" id="addSheet" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="myModalLabel">添加报表</h4>
+
+				</div>
+				<div class="modal-body">
+					<!-- 添加图表部分 -->
+					<div class="row" id="sheet">
+						<div class="col-xs-2" ></div>
+						<div class="col-xs-3" >
+							<label for="" class="mala-label mala-form-fix">
+								<span class="mala-required">*</span>报表名：</label>
+						</div>
+						<div class="col-xs-6">
+							<input type="text" id="addSheetInput" class="mala-input" maxlength="10">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">取消
+					</button>
+					<button type="button" class="btn btn-primary" id="addSheetButton">
+						添加
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+<!--	反馈弹窗-->
+	<div class="modal fade" id="addFeedBack" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="myModalLabel">建议与反馈</h4>
+
+				</div>
+				<div class="modal-body">
+					<!-- 添加图表部分 -->
+					<div class="row">
+						<div class="col-xs-4" >
+							<span class="mala-required">*</span><label for="" >请填写您的反馈内容</label>
+						</div>
+					</div>
+					<div class="mala-form-item mala-row">
+
+						<div class="col-xs-12">
+							<textarea id="addFeedBackText" class="mala-textarea mala-form-control" maxlength="300" rows="6"></textarea>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">取消
+					</button>
+					<button type="button" class="btn btn-primary" id="addFeedBackButton">
+						提交
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" id="addDiagram" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabe2" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×
+					</button>
+					<div class="row" >
+						<div class="col-xs-4" ></div>
+						<div class="col-xs-5">
+							<h3>新建图表类型</h3>
+						</div>
+						<div class="col-xs-3" ></div>
+					</div>
+					<div class="row" >
+						<div class="col-xs-3" ></div>
+						<div class="col-xs-7">
+							<select id="type" onchange="setChangeType()" class="select-title">
+								<option value="0">请选择图表类型</option>
+								<option value="1">Top问题排行榜</option>
+								<option value="2">M天TopN问题的D天趋势</option>
+								<option value="3">业务反馈量</option>
+								<option value="4">CPO环比趋势</option>
+								<option value="5">全流程问题反馈分布</option>
+								<option value="6">CPO地域分布排行榜</option>
+								<option value="7">声量总额趋势图</option>
+								<option value="8">情感方向分布图</option>
+								<option value="9">差评率趋势</option>
+								<option value="10">成交率趋势</option>
+
+							</select>
+						</div>
+						<div class="col-xs-2" ></div>
+					</div>
+
+				</div>
+				<div class="modal-body addDiagram">
+					<!-- 添加图表部分 -->
+					<div id="diagram">
+						<div class="row" id="diagram_name"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>图表名称：</label>
+							</div>
+							<div class="col-xs-7">
+								<input type="text" id="diagram_namevalue" value="" maxlength="20" class="mala-select">
+							</div>
+						</div>
+						<div class="row" id="topn" style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>排行榜问题个数：</label>
+							</div>
+							<div class="col-xs-7">
+								<div class="btn-group" id="topnvalue" data-toggle="buttons">
+									<label class="btn btn-default active">
+										<input type="radio" class="toggle" value="3"> Top3
+									</label>
+									<label class="btn btn-default">
+										<input type="radio" class="toggle" value="5"> Top5
+									</label>
+									<label class="btn btn-default">
+										<input type="radio" class="toggle" value="10"> Top10
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row"  id="size"  style="display: none">
+
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>图表大小:</label>
+							</div>
+							<div class="col-xs-7">
+								<select  id="sizevalue"  class="mala-select">
+									<option value="1">大</option>
+									<option value="2">小</option>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="source"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>数据来源：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="sourcevalue"  class="mala-select">
+									<?php
+										foreach ($source_list as $k => $v){
+											echo "<option value='".$k."'>".$v."</option>";
+										}
+
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="business_type"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>产品业务线：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="business_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<?php
+									foreach ($business_type_list as $k => $v){
+										echo "<option value='".$k."'>".$v."</option>";
+									}
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="mdays"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>数据时间范围：</label>
+							</div>
+							<div class="col-xs-7">
+								<input type="text" id="mdaysvalue" placeholder="最近n天，输入数值n" value="" class="mala-select" maxlength="3">
+							</div>
+						</div>
+						<div class="row"  id="ddays"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>显示趋势的时间范围：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="ddaysvalue"  class="mala-select">
+									<option value="1">最近一周</option>
+									<option value="2">最近两周</option>
+									<option value="3">最近一个月</option>
+									<option value="4">最近两个月</option>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="customer_type"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>用户身份：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="customer_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">乘客</option>
+									<option value="2">司机</option>
+									<option value="3">其他</option>
+								</select>
+							</div>
+						</div>
+						<div class="row" id="city"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>城市：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="cityvalue"  class="mala-select">
+									<option value="0">全部</option>
+									<?php
+										foreach ($city_list as $k => $v){
+											echo "<option value='".$v['id']."'>".$v['name']."</option>";
+										}
+
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="row" id="service_state"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>行程状态：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="service_statevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">发单接单</option>
+									<option value="2">接驾</option>
+									<option value="3">行程中</option>
+									<option value="4">支付</option>
+									<option value="5">服务评价</option>
+								</select>
+							</div>
+						</div>
+						<div class="row" id="question_type"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>问题分类：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="question_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">投诉类</option>
+									<option value="2">差评类</option>
+									<option value="3">成交率</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row" id="emotional_type"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>情感方向：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="emotional_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">正面</option>
+									<option value="2">负面</option>
+									<option value="3">中立</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row" id="time_range"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>时间段</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="time_rangevalue"  class="mala-select">
+									<option value="7">近七天</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">取消
+					</button>
+					<button type="button" class="btn btn-primary" id="addDiagramButton">
+						创建
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+	<div class="modal fade" id="updateSheet" tabindex="-1" role="dialog"
+		 aria-labelledby="updateModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×
+					</button>
+					<h4 class="modal-title" id="myModalLabel">修改报表</h4>
+
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-xs-2"></div>
+						<div class="col-xs-3" >
+							<label for="" class="mala-label mala-form-fix">
+								<span class="mala-required">*</span>报表名：</label>
+						</div>
+						<div class="col-xs-6">
+							<input type="text" id="updateSheetInput" class="mala-input" maxlength="10">
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">取消
+					</button>
+					<button type="button" class="btn btn-default" id="updateSheetButton">
+						修改
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" id="updateDiagram" tabindex="-1" role="dialog"
+		 aria-labelledby="myModalLabe3" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">×
+					</button>
+					<div class="row" >
+						<div class="col-xs-2" ><label style="display:none;" id="updatediaId"
+													  for=""></label></div>
+						<div class="col-xs-3" >
+							<label for="" class="mala-label mala-form-item">图表类型：</label>
+						</div>
+						<div class="col-xs-6">
+							<label id="updateType" for="">CPO环比趋势</label>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-body updateDiagram">
+					<!-- 修改图表部分 -->
+					<div id="diagram">
+						<div class="row" id="updatediagram_name" >
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>图表名称：</label>
+							</div>
+							<div class="col-xs-7">
+								<input type="text" id="updatediagram_namevalue" value="" class="mala-select" maxlength="20">
+							</div>
+						</div>
+						<div class="row" id="updatetopn">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>排行榜问题个数：</label>
+							</div>
+							<div class="col-xs-7">
+								<div class="btn-group" id="updatetopnvalue" data-toggle="buttons">
+									<label class="btn btn-default">
+										<input type="radio" class="toggle" value="3"> Top3
+									</label>
+									<label class="btn btn-default">
+										<input type="radio" class="toggle" value="5"> Top5
+									</label>
+									<label class="btn btn-default">
+										<input type="radio" class="toggle" value="10"> Top10
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="row"  id="updatesize">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>图表大小：</label>
+							</div>
+							<div class="col-xs-7">
+								<select  id="updatesizevalue" class="mala-select">
+									<option value="1">大</option>
+									<option value="2">小</option>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="updatesource">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>数据来源：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updatesourcevalue" class="mala-select">
+									<?php
+										foreach ($source_list as $k => $v){
+											echo "<option value='".$k."'>".$v."</option>";
+										}
+
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="updatebusiness_type">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>产品业务线：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updatebusiness_typevalue" class="mala-select">
+									<option value="0">全部</option>
+									<?php
+									foreach ($business_type_list as $k => $v){
+										echo "<option value='".$k."'>".$v."</option>";
+									}
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="updatemdays">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>数据时间范围：</label>
+							</div>
+							<div class="col-xs-7">
+								<input type="text" id="updatemdaysvalue" placeholder="最近n天，输入数值n" value="" class="mala-select" maxlength="3">
+							</div>
+						</div>
+						<div class="row"  id="updateddays">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>显示趋势的时间范围：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updateddaysvalue" class="mala-select">
+									<option value="1">最近一周</option>
+									<option value="2">最近两周</option>
+									<option value="3">最近一个月</option>
+									<option value="4">最近两个月</option>
+								</select>
+							</div>
+						</div>
+						<div class="row"  id="updatecustomer_type">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>用户身份：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updatecustomer_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">乘客</option>
+									<option value="2">司机</option>
+									<option value="3">其他</option>
+
+								</select>
+							</div>
+						</div>
+						<div class="row" id="updatecity">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>城市：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updatecityvalue" class="mala-select">
+									<option value="0">全部</option>
+									<?php
+									foreach ($city_list as $k => $v){
+										echo "<option value='".$v['id']."'>".$v['name']."</option>";
+									}
+
+									?>
+								</select>
+							</div>
+						</div>
+						<div class="row" id="updateservice_state">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>行程状态：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updateservice_statevalue" class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">发单接单</option>
+									<option value="2">接驾</option>
+									<option value="3">行程中</option>
+									<option value="4">支付</option>
+									<option value="5">服务评价</option>
+								</select>
+							</div>
+						</div>
+						<div class="row" id="updatequestion_type"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>问题分类：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updatequestion_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">投诉类</option>
+									<option value="2">差评类</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="row" id="updateemotional_type"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>情感方向：</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updateemotional_typevalue"  class="mala-select">
+									<option value="0">全部</option>
+									<option value="1">正面</option>
+									<option value="2">负面</option>
+									<option value="3">中立</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="row" id="updatetime_range"  style="display: none">
+							<div class="col-xs-5" >
+								<label for="" class="mala-label mala-form-item"><span style="color:red;">*</span>时间段</label>
+							</div>
+							<div class="col-xs-7">
+								<select id="updatetime_rangevalue"  class="mala-select">
+									<option value="7">近七天</option>
+								</select>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default"
+							data-dismiss="modal">取消
+					</button>
+					<button type="button" class="btn btn-primary" id="updateDiagramButton">
+						保存
+					</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+
+
+	<div style="display:none;">
+
+
+		<!-- 大图表 -->
+		<div id="big"  class="col-xs-12" style="margin-top: 20px;">
+			<div  class="panel panel-default" >
+
+				<div class="panel-heading">
+					<h3 class="panel-title">图表大
+						<i class="glyphicon glyphicon-edit plus-diagram diagramedit diagramupdate" title="修改图表">&nbsp;|&nbsp;</i>&nbsp;&nbsp;
+						<i class="glyphicon glyphicon-remove plus-diagram diagramedit diagramremove" title="删除图表">&nbsp;|&nbsp;</i>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div style="height:450px;width:100%;" class="chart" id="chartbig"></div>
+				</div>
+			</div>
+		</div>
+
+		<div  id="small" class="col-xs-6" style="margin-top: 20px;">
+			<!-- 小图表 -->
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">图表小
+						<i class="glyphicon glyphicon-edit plus-diagram diagramedit diagramupdate" title="修改图表">&nbsp;|&nbsp;</i>&nbsp;&nbsp;
+						<i class="glyphicon glyphicon-remove plus-diagram diagramedit diagramremove" title="删除图表">&nbsp;|&nbsp;</i>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div style="height:350px;width:100%;" class="chart" id="chartsmall"></div>
+				</div>
+			</div>
+		</div>
+
+	</div>
 </div>
+</section>
