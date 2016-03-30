@@ -1,38 +1,50 @@
 (function() {
 	'use strict';
 
-	angular.module('auth').directive('acmeNavbar', acmeNavbar);
-
+	angular.module('auth').directive('acmeNavbar', ['$http', 'GET_USER_PERMITS', 'METHOD', acmeNavbar]);
+	
 	/** @ngInject */
-	function acmeNavbar() {
+	function acmeNavbar($http, GET_USER_PERMITS, METHOD) {
 		var directive = {
 			restrict : 'E',
 			templateUrl : 'app/components/navbar/navbar.html',
-			controller : NavbarController,
 			controllerAs : 'vm',
-			bindToController : true
+			bindToController : true,
+			controller : function(navConfigProvider, $http) {
+				var vm = this;
+				vm.selectedPage = navConfigProvider.config[0].pageId;
+				vm.data = navConfigProvider.config;
+				vm.hasPermit = function(pageItem) {
+					if(!vm.permits)
+						return false;
+					var result = true;
+					if(pageItem.requiredPermits) {
+						pageItem.requiredPermits.forEach(function(permit) {
+							console.log(vm.permits[permit])
+							result = result && vm.permits[permit];
+						});
+					}
+					return result;
+				};
+				
+				vm.onClick = function(item) {
+					vm.selectedPage = item.pageId;
+					console.log(item.pageId)
+				};
+				
+				$http({
+					url: GET_USER_PERMITS,
+					method: METHOD
+				}).then(function(resp) {
+					console.log(resp);
+					vm.permits = resp.data;
+				}, function(error) {
+					console.log(error);
+				});
+			}
 		};
 
 		return directive;
-
-		/** @ngInject */
-		function NavbarController() {
-			var vm = this;
-			
-			vm.overview = {'reportId': '1', 'name': "数据概览"};
-
-			vm.businesses = [ {
-				'reportId' : '2',
-				'name' : "出租车"
-			}, {
-				'reportId' : '3',
-				'name' : "快车"
-			} ];
-			
-			vm.showReport = function(business) {
-				console.log(business)
-			}
-		}
 	}
 
 	var $ = angular.element;
@@ -51,11 +63,11 @@
 						'click',
 						'#js-aside .mala-subnavi-lead',
 						function() {
-							console.log('clicked')
 							var target = $(this), arrow = target
 									.find('.mala-arrow'), is_up = arrow
 									.hasClass('mala-arrow-up'), list = target
 									.siblings('.mala-thirdnavi-list');
+							console.log(is_up)
 							if (is_up) {
 								arrow.removeClass('mala-arrow-up').addClass(
 										'mala-arrow-down');
