@@ -9,8 +9,8 @@
  *  If you want to override some bootstrap variables, you have to change values here.
  *  The list of variables are listed here bower_components/bootstrap/less/variables.less
  */
-@navbar-inverse-link-color: #5AADBB;
-@icon-font-path: '../../bower_components/bootstrap/fonts/';
+@highlight-color: #ff8c03;
+@normal-color: #d2dce9;
 
 .browsehappy {
   margin: 0.2em 0;
@@ -25,6 +25,67 @@
   img.pull-right {
     width: 50px;
   }
+}
+
+.new-icon {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  margin-top: -1px;
+  line-height: 14px;
+  vertical-align: text-top;
+  margin-right: 5px;
+  background-image: url(../images/icon.png);
+  background-position: 14px 14px;
+  background-repeat: no-repeat;
+}
+
+.new-icon-report {
+	background-position: 0px 0px;
+  	width: 16px;
+}
+
+.new-icon-track {
+  background-position: 1px -28px;
+  width: 19px;
+}
+
+.highlight {
+	color: @highlight-color
+}
+
+.highlight .new-icon-report {
+	background-position: -40px 0px;
+  	width: 16px;
+}
+
+.highlight .new-icon-track {
+  background-position: -39px -28px;
+  width: 19px;
+}
+.highlight .new-icon-yuqing {
+  background-position: -40px -56px;
+  width: 19px;
+}
+.highlight .new-icon-activedatacenter {
+  background-position: -39px -81px;
+  width: 21px;
+  height: 20px;
+}
+.highlight .new-icon-activecard {
+  background-position: -41px -100px;
+  width: 21px;
+  height: 20px;
+}
+.highlight .new-icon-card {
+  background-position: 1px -100px;
+  width: 21px;
+  height: 20px;
+}
+.highlight .new-icon-datacenter {
+  background-position: 1px -81px;
+  width: 21px;
+  height: 20px;
 }
 
 .hidden {

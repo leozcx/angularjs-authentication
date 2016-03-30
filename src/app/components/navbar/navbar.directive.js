@@ -20,7 +20,6 @@
 					var result = true;
 					if(pageItem.requiredPermits) {
 						pageItem.requiredPermits.forEach(function(permit) {
-							console.log(vm.permits[permit])
 							result = result && vm.permits[permit];
 						});
 					}
@@ -29,7 +28,6 @@
 				
 				vm.onClick = function(item) {
 					vm.selectedPage = item.pageId;
-					console.log(item.pageId)
 				};
 				
 				$http({

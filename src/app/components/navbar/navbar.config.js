@@ -8,31 +8,31 @@
 		this.config = [
 						{
 							'pageId': '1',
-							'pageDisplayName': '数据报告',
+							'pageDisplayName_key': 'DATA_REPORT',
 							'requiredPermits': ['21'],
 							'hasChildren': true,
 							'hasIcon': true,
-							'iconClass': 'new-icon-report',
+							'iconClass': 'new-icon new-icon-report',
 							'children': [
 								{
 									'pageId': '1.1',
-									'pageDisplayName': '数据概览',
+									'pageDisplayName_key': 'DATA_OVERVIEW',
 									'href': '/#/data?reportId=1',
 									'requiredPermits': []			
 								},
 								{
 									'pageId': '1.2',
-									'pageDisplayName': '产品线数据',
+									'pageDisplayName_key': 'BUSINESS_LINE',
 									'hasChildren': true,
 									'children': [
 										{
 											'pageId': '1.2.1',
 											'href': '/#/data?reportId=2',
-											'pageDisplayName': '出租车'
+											'pageDisplayName_key': 'TAXI'
 										}, {
 											'pageId': '1.2.2',
 											'href': '/#/data?reportId=3',
-											'pageDisplayName': '专车'
+											'pageDisplayName_key': 'SPECIAL_CAR'
 										}
 									]
 								}
@@ -40,25 +40,25 @@
 						}, 
 						{
 							'pageId': '2',
-							'pageDisplayName': '问题追踪',
+							'pageDisplayName_key': 'ISSUE_TRACKING',
 							'requiredPermits': ['22'],
 							'hasIcon': true,
-							'iconClass': 'new-icon-track',
+							'iconClass': 'new-icon new-icon-track',
 							'hasChildren': true,
 							'children': [
 								{
-									'pageId': '1.1',
-									'pageDisplayName': '问题列表',
+									'pageId': '2.1',
+									'pageDisplayName_key': 'ISSUE_LIST',
 									'requiredPermits': []			
 								}
 							]
 						},
 						{
 							'pageId': 'customer-feedback',
-							'pageDisplayName': '用户反馈',
+							'pageDisplayName_key': 'USER_FEEDBACK',
 							'requiredPermits': ['23'],
 							'hasIcon': true,
-							'iconClass': 'new-icon-track',
+							'iconClass': 'new-icon new-icon-track',
 							'hasChildren': false
 						}
 					];

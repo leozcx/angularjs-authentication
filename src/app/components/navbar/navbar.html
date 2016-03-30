@@ -2,32 +2,31 @@
 <nav id="js-aside" class="mala-aside">
 	<ul ng-repeat="topItem in vm.data" class="mala-subnavi-list">
 		<li class="mala-subnavi-item" ng-if="vm.hasPermit(topItem)">
-			<div class="mala-subnavi-lead mala-clearfix report"> 
+			<div class="mala-subnavi-lead mala-clearfix report" ng-class="{highlight:hover}" ng-mouseenter="hover=true" ng-mouseleave="hover=false"> 
 				<i ng-if="topItem.hasIcon" class="{{topItem.iconClass}}"></i>
-				{{topItem.pageDisplayName}}
+				{{(topItem.pageDisplayName_key || topItem.pageDisplayName) | translate}}
                 <span ng-if="topItem.hasChildren" class="mala-arrow mala-arrow-down mala-fr"></span>
             </div>
             <ul class="mala-thirdnavi-list" style="margin-left: 20px;" ng-repeat="secondItem in topItem.children">
             	<li class="mala-subnavi-item" ng-if="secondItem.hasChildren && vm.hasPermit(secondItem)" >
             		<div class="mala-subnavi-lead mala-clearfix product_report">
 	                    	<i class="fa fa-exchange fa-fw"></i>
-	                    	{{secondItem.pageDisplayName}}
+	                    	{{(secondItem.pageDisplayName_key || secondItem.pageDisplayName) | translate}}
 	                    	<span class="mala-arrow mala-arrow-down mala-fr"></span>
             		</div>
                     <ul class="mala-thirdnavi-list">
                     	<li ng-repeat="thirdItem in secondItem.children" class="mala-thirdnavi-item">
-                    		<a nf-if="vm.hasPermit(thirdItem)" ng-click="vm.onClick(thirdItem)" ng-class="vm.selectedPage == secondItem.pageId ? 'active' : ''" class="mala-thirdnavi-link select" href="{{thirdItem.href}}">{{thirdItem.pageDisplayName}}</a>
+                    		<a nf-if="vm.hasPermit(thirdItem)" ng-click="vm.onClick(thirdItem)" ng-class="{active: thirdItem.pageId == vm.selectedPage}" class="mala-thirdnavi-link select" href="{{thirdItem.href}}">{{(thirdItem.pageDisplayName_key || thirdItem.pageDisplayName) | translate}}</a>
                     	</li>
                     </ul>
                 </li>
                 <li ng-if="!secondItem.hasChildren && vm.hasPermit(secondItem)" class="mala-subnavi-item">
-                	<a ng-click="vm.onClick(secondItem)" ng-class="vm.selectedPage == secondItem.pageId ? 'select active' : ''" class="mala-subnavi-link select total_report" href="{{secondItem.href}}"> 
+                	<a ng-click="vm.onClick(secondItem)" ng-class="{active: secondItem.pageId == vm.selectedPage}" class="mala-subnavi-link select total_report" href="{{secondItem.href}}"> 
                 		<i class="fa fa-exchange fa-fw"></i>
-                		{{secondItem.pageDisplayName}}
+                		{{(secondItem.pageDisplayName_key || secondItem.pageDisplayName) | translate}}
                 	</a>
                 </li>
             </ul>
 		</li>
 	</ul>
-
 </nav>
